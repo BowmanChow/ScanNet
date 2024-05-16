@@ -12,7 +12,7 @@ parser.add_argument('--export_depth_images', dest='export_depth_images', action=
 parser.add_argument('--export_color_images', dest='export_color_images', action='store_true')
 parser.add_argument('--export_poses', dest='export_poses', action='store_true')
 parser.add_argument('--export_intrinsics', dest='export_intrinsics', action='store_true')
-parser.set_defaults(export_depth_images=False, export_color_images=False, export_poses=False, export_intrinsics=False)
+parser.set_defaults(export_depth_images=True, export_color_images=True, export_poses=True, export_intrinsics=True)
 
 opt = parser.parse_args()
 print(opt)
