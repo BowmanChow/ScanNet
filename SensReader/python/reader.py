@@ -1,24 +1,36 @@
 import argparse
 import os, sys
+from typing import List
 
 from SensorData import SensorData
 
-# params
-parser = argparse.ArgumentParser()
-# data paths
-parser.add_argument('--filename', required=True, help='path to sens file to read')
-parser.add_argument('--output_path', required=True, help='path to output folder')
-parser.add_argument('--export_depth_images', dest='export_depth_images', action='store_true')
-parser.add_argument('--export_color_images', dest='export_color_images', action='store_true')
-parser.add_argument('--export_poses', dest='export_poses', action='store_true')
-parser.add_argument('--export_intrinsics', dest='export_intrinsics', action='store_true')
-parser.set_defaults(export_depth_images=True, export_color_images=True, export_poses=True, export_intrinsics=True)
+def parse_args(arg_list: List[str] = None):
+  # params
+  parser = argparse.ArgumentParser()
+  # data paths
+  parser.add_argument('--filename', required=True, help='path to sens file to read')
+  parser.add_argument('--output_path', required=True, help='path to output folder')
+  parser.add_argument('--export_depth_images', dest='export_depth_images', action='store_true')
+  parser.add_argument('--export_color_images', dest='export_color_images', action='store_true')
+  parser.add_argument('--export_poses', dest='export_poses', action='store_true')
+  parser.add_argument('--export_intrinsics', dest='export_intrinsics', action='store_true')
+  parser.set_defaults(export_depth_images=True, export_color_images=True, export_poses=True, export_intrinsics=True)
 
-opt = parser.parse_args()
-print(opt)
+  if arg_list is None:
+    opt = parser.parse_args()
+  else:
+    opt = parser.parse_args(arg_list)
+  print(f"{opt = }")
+  return opt
 
 
-def main():
+def main(arg_list: List[str] = None):
+  if arg_list is None:
+    opt = parse_args()
+  else:
+    opt = parse_args(
+      arg_list=arg_list
+    )
   if not os.path.exists(opt.output_path):
     os.makedirs(opt.output_path)
   # load the data
