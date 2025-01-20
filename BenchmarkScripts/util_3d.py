@@ -4,14 +4,14 @@ import json
 try:
     import numpy as np
 except:
-    print "Failed to import numpy package."
+    print("Failed to import numpy package.")
     sys.exit(-1)
 
 try:
     from plyfile import PlyData, PlyElement
 except:
-    print "Please install the module 'plyfile' for PLY i/o, e.g."
-    print "pip install plyfile"
+    print("Please install the module 'plyfile' for PLY i/o, e.g.")
+    print("pip install plyfile")
     sys.exit(-1)
 
 import util
@@ -157,6 +157,6 @@ def get_instances(ids, class_ids, class_labels, id2label):
         if inst.label_id in class_ids:
             instances[id2label[inst.label_id]].append(inst.to_dict())
     return instances
-            
+
 
 
